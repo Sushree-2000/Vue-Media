@@ -2,13 +2,15 @@
   <div class="home">
     <div class="navu">
       <div class="nav">
-        <router-link to="/setting">Setting</router-link> &nbsp;&nbsp;
+        <router-link class="link" to="/setting">Setting</router-link>
+        &nbsp;&nbsp;
         <!-- <router-link to="/about">About</router-link> &nbsp;&nbsp; -->
-        <router-link to="/profile">Profile</router-link>&nbsp;&nbsp;
-        <router-link to="/home">Home</router-link>&nbsp;&nbsp;
+        <router-link class="link" to="/home">Home</router-link>&nbsp;&nbsp;
+        <router-link class="link" to="/profile">{{user}}</router-link
+        >&nbsp;&nbsp;
         <!-- <router-link to="/profile"> {{ userName }} </router-link> -->
       </div>
-      <h2>Add your details</h2>
+      <h2 class="h2">Add your details</h2>
       <hr />
     </div>
 
@@ -17,7 +19,7 @@
         <div class="child">
           <div class="personaldetail">
             <div class="heading">
-              <h3>Personal details</h3>
+              <h3 class="h3">Personal details</h3>
             </div>
 
             <div class="abt">
@@ -82,7 +84,7 @@
           </div>
           <div class="professionaldetails">
             <div class="heading">
-              <h3>Professional Details</h3>
+              <h3 class="h3">Professional Details</h3>
             </div>
 
             <div class="abt">
@@ -125,9 +127,8 @@
               />
             </div>
           </div>
+          <button class="btnc" type="submit">Upload</button>
         </div>
-
-        <button class="btnc" type="submit">Upload</button>
       </form>
     </div>
   </div>
@@ -153,6 +154,8 @@ export default {
     const passout = ref("");
 
     const router = useRouter();
+    const user = localStorage.getItem("user");
+
 
     const submit = async () => {
       await fetch("http://localhost/api/addAbout", {
@@ -189,7 +192,7 @@ export default {
       education,
       college,
       passout,
-      submit,
+      submit,user
     };
   },
 };
@@ -200,9 +203,85 @@ h2 {
   color: rgb(5, 196, 196);
   font-size: xx-large;
 }
+h3 {
+  text-decoration: underline;
+}
 
 .heading {
   color: blue;
   text-decoration: wavy;
+}
+
+.abt {
+  border: 3px solid aqua;
+  border-radius: 12px;
+  background-color: rgb(206, 250, 250);
+  width: 300px;
+  height: 80px;
+  padding: 8px;
+  /* margin: 20px; */
+  display: flex;
+  flex-direction: column;
+  align-content: center;
+  justify-content: center;
+}
+
+/* Responsive design */
+@media only screen and (max-width: 370px) and (min-width: 350px){
+  .abt {
+    border: 3px solid aqua;
+    border-radius: 12px;
+    background-color: rgb(206, 250, 250);
+    width: fit-content;
+    height: 80px;
+    padding: 4px;
+    /* margin: 20px; */
+    display: flex;
+    flex-direction: column;
+    align-content: center;
+    justify-content: center;
+  }
+}
+@media only screen and (max-width: 350px){
+    .h2{
+        font-size: large;
+        /* align-items: center; */
+    }
+  .abt {
+    border: 3px solid aqua;
+    border-radius: 12px;
+    background-color: rgb(206, 250, 250);
+    width: 150px;
+    height: 80px;
+    padding: 4px;
+    /* margin: 20px; */
+    display: flex;
+    flex-direction: column;
+    align-content: center;
+    justify-content: center;
+  }
+  label, .h3{
+      font-weight: 300;
+      font-size: medium;
+  }
+}
+@media only screen and (max-width: 200px){
+  .abt {
+    border: 3px solid aqua;
+    border-radius: 12px;
+    background-color: rgb(206, 250, 250);
+    width: 85px;
+    height: 80px;
+    padding: 2px;
+    /* margin: 20px; */
+    display: flex;
+    flex-direction: column;
+    align-content: center;
+    justify-content: center;
+  }
+  label, h3{
+      font-size: smaller;
+  }
+
 }
 </style>

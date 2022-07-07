@@ -145,7 +145,7 @@ export default {
 #child {
   border: 3px solid aqua;
   border-radius: 16px;
-  padding: 4px;
+  padding: 10px;
   width: fit-content;
   background-image: url("/src/assets/designed paper.jpeg");
   background-position: center;
@@ -156,6 +156,7 @@ export default {
 .center {
   display: flex;
   place-content: space-around;
+  margin: 10px;
 }
 .btnr {
   width: 320px;

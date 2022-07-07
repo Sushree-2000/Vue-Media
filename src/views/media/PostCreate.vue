@@ -1,47 +1,49 @@
 <template>
-<div class="home">
+  <div class="home">
     <div class="navu">
-  <div class="nav">
-    <router-link to="/setting">Setting</router-link> &nbsp;&nbsp;
-    <router-link to="/about">About</router-link> &nbsp;&nbsp;
-    <router-link to="/profile">Profile</router-link>&nbsp;&nbsp;
-    <router-link to="/home">Home</router-link>&nbsp;&nbsp;
-    <!-- <router-link to="/profile"> {{ userName }} </router-link> -->
-  </div>
-  <h2>Create your posts here</h2>
-  <hr />
-</div>
-
-  <form @submit.prevent="submit">
-    <div class="containers">
-      <div class="Post">
-        <label for="textpost">Write your Thoughts</label>
-        <input type="text" name="textpost" v-model="textpost" />
+      <div class="nav">
+        <router-link class="link" to="/setting">Setting</router-link>
+        &nbsp;&nbsp;
+        <router-link class="link" to="/about">About</router-link> &nbsp;&nbsp;
+        <router-link class="link" to="/home">Home</router-link>&nbsp;&nbsp;
+        <router-link class="link" to="/profile">{{ user }}</router-link>&nbsp;&nbsp;
+        <!-- <router-link to="/profile"> {{ userName }} </router-link> -->
       </div>
-      <br />
+      <h2>Create your posts here</h2>
+      <hr />
+    </div>
 
-      <div class="Post">
-        <label for="imagepost">Upload your Photos</label>
-        <input
-          type="file"
-          name="imagepost"
-          accept="image/*"
-          @change="handleImageSelected"
-        />
-      </div>
-      <br />
+    <form @submit.prevent="submit">
+      <div class="center">
+        <div class="containers" id="child">
+          <div class="formgroup">
+            <label for="textpost">Write your Thoughts</label>
+            <input type="text" name="textpost" v-model="textpost" />
+          </div>
+          <br />
 
-      <!-- <div class="Post">
+          <div class="formgroup">
+            <label for="imagepost">Upload your Photos</label>
+            <input class="img"
+              type="file"
+              name="imagepost"
+              accept="image/*"
+              @change="handleImageSelected"
+            />
+          </div>
+          <br />
+
+          <!-- <div class="Post">
         <label for="imagepost">Upload your photos</label>
         <input type="file" name="imagepost" v-bind="imagepost" />
       </div>
       <br /> -->
 
-      <button class="btn">Post</button>
-    </div>
-  </form>
-</div>
-
+          <button class="btnr">Post</button>
+        </div>
+      </div>
+    </form>
+  </div>
 </template>
 
 <script>
@@ -60,6 +62,7 @@ export default {
     const imagepost = ref("");
     const { imageFile, handleImageSelected } = useImageUpload();
     const router = useRouter();
+    const user = localStorage.getItem("user");
 
     const submit = async () => {
       const data = new FormData();
@@ -75,13 +78,13 @@ export default {
       });
       await router.push("/home");
     };
-    return { textpost, submit, handleImageSelected };
+    return { textpost, submit, handleImageSelected, user };
   },
 };
 </script>
 
 <style>
-.Post {
+/* .Post {
   border: 3px solid aqua;
   border-radius: 16px;
   background-color: rgb(206, 250, 250);
@@ -90,13 +93,16 @@ export default {
   padding: 5px;
   display: flex;
   /* flex-direction: column; */
-  align-content: center;
+  /* align-content: center;
   justify-content: center;
-}
+}  */
 .containers {
   display: flex;
   flex-direction: column;
   align-items: center;
+  border: 2px solid aqua;
+  border-radius: 8px;
+  padding: 8px;
   /* justify-content: center; */
 }
 .btn {
@@ -108,5 +114,89 @@ export default {
   border-radius: 16px;
   background-color: rgb(201, 252, 252);
   color: rgb(6, 59, 42);
+}
+@media only screen and (max-width: 550px) {
+  /* .Post {
+    border: 3px solid aqua;
+    border-radius: 16px;
+    background-color: rgb(206, 250, 250);
+    width: fit-content;
+    height: 80px;
+    padding: 5px;
+    display: flex;
+    flex-direction: column;
+    align-content: center;
+    justify-content: center;
+  } */
+  #child {
+    border: 3px solid aqua;
+    border-radius: 16px;
+    padding: 4px;
+    width: fit-content;
+    background-image: url("/src/assets/designed paper.jpeg");
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    position: relative;
+  }
+  .btn {
+    width: fit-content;
+    padding: 2px;
+    font-size: large;
+    font-weight: bold;
+    border-width: 3px;
+    border-radius: 10px;
+    border-color: aqua;
+    background-color: rgb(177, 250, 250);
+  }
+   /* .img{
+      width: 200px;
+  } */
+}
+@media only screen and (max-width: 300px) {
+  /* .Post {
+    border: 3px solid aqua;
+    border-radius: 16px;
+    background-color: rgb(206, 250, 250);
+    width: fit-content;
+    height: 80px;
+    padding: 3px;
+    display: flex;
+    flex-direction: column;
+    align-content: center;
+    justify-content: center;
+  } */
+
+  .img{
+      width: 100px;
+  }
+  #child {
+    border: 3px solid aqua;
+    border-radius: 10px;
+    /* padding: 4px; */
+    width: fit-content;
+    /* width: 200px; */
+    display: flex;
+    flex-direction: column;
+    flex-shrink: 1;
+    background-image: url("/src/assets/designed paper.jpeg");
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    position: relative;
+  }
+  .btn{
+    width: fit-content;
+    padding: 2px;
+    font-size: large;
+    font-weight: bold;
+    border-width: 3px;
+    border-radius: 10px;
+    border-color: aqua;
+    background-color: rgb(177, 250, 250);
+  }
+  h2{
+      font-size: small;
+  }
 }
 </style>

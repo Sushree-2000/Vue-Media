@@ -2,10 +2,10 @@
   <div class="home">
     <div class="navu">
       <div class="nav">
-        <router-link to="/setting">Setting</router-link> &nbsp;&nbsp;
-        <router-link to="/about">About</router-link> &nbsp;&nbsp;
-        <router-link to="/home">Home</router-link>&nbsp;&nbsp;
-        <router-link to=""> {{ userN }} </router-link>
+        <router-link class="link" to="/setting">Setting</router-link> &nbsp;&nbsp;
+        <router-link class="link" to="/about">About</router-link> &nbsp;&nbsp;
+        <router-link class="link" to="/home">Home</router-link>&nbsp;&nbsp;
+        <router-link class="link" to=""> {{ userN }} </router-link>
       </div>
       <h2>{{ userN }}'s profile page</h2>
       <hr />
@@ -19,7 +19,7 @@
               <button id="lk" class="btns">Dislike</button>
 
               <button class="btns" v-if="userN == actualUser">
-                <router-link
+                <router-link class="link"
                   :to="{ name: 'EditPost', params: { id: item.id } }"
                 >
                   Edit
@@ -168,18 +168,12 @@ h3 {
   color: rgb(2, 65, 65);
   font-size: x-large;
   font-weight: bolder;
-  text-decoration: underline;
+  /* text-decoration: underline; */
 }
-.out {
-  margin: 2px;
-  display: flex;
-  place-content: space-evenly;
-}
+
 span {
   color: rgb(2, 175, 175);
   text-decoration: underline;
 }
-/* .abot {
-    filter: drop-shadow(0 20px 13px rgba(3, 102, 148, 0.08)) drop-shadow(0 8px 5px rgba(3, 102, 148, 0.08));
-} */
+
 </style>

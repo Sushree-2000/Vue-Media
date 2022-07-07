@@ -5,8 +5,8 @@
       <hr />
     </div>
     <div class="dash">
-      <router-link to="/createuser">Register</router-link> &nbsp;&nbsp;
-      <router-link to="/loginuser">Login</router-link>
+      <router-link class="link" id="link" to="/createuser">Register</router-link> &nbsp;&nbsp;
+      <router-link class="link" id="link" to="/loginuser">Login</router-link>
     </div>
     <p>You can register and login here</p>
   </div>
@@ -27,6 +27,10 @@ export default {};
     .dash{
         display: flex;
         flex-direction: column;
+    }
+    #link{
+        font-size:xx-large ;
+        font-weight: bolder;
     }
 }
 </style>

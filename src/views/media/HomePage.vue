@@ -2,26 +2,28 @@
   <div class="home">
     <div class="navu">
       <div class="nav">
-        <router-link to="/setting">Setting</router-link> &nbsp;&nbsp;
-        <router-link to="/about">About</router-link> &nbsp;&nbsp;
-        <router-link to="/profile">{{ user }}</router-link>
+        <router-link class="link" to="/setting">Setting</router-link>
+        &nbsp;&nbsp;
+        <router-link class="link" to="/about">About</router-link> &nbsp;&nbsp;
+        <router-link class="link" to="/profile">{{ user }}</router-link>
       </div>
       <h2>Welcome to home page</h2>
       <hr />
     </div>
     <button class="btnc">
-      <router-link to="/createpost">Create Post</router-link>
+      <router-link class="link" to="/createpost">Create Post</router-link>
     </button>
     <div class="container">
       <div class="items" v-for="item in post" :key="item.id">
         <div class="child">
           <div class="dot">
-            ...
+            <div class="l">...</div>
             <div class="btnss">
               <button id="lk" class="btns">Like</button>
               <button id="lk" class="btns">Dislike</button>
               <button class="btns" v-if="item.user_id == userId">
                 <router-link
+                  class="link"
                   :to="{ name: 'EditPost', params: { id: item.id } }"
                 >
                   Edit
@@ -39,11 +41,22 @@
           </div>
 
           <!-- <p>{{ item.id }}</p> -->
-          <p id="po" class="po" v-if="item.userId == userId">
-            <router-link to="/profile">{{ item.email }}</router-link>
+          <!-- <p id="po" class="po" v-if="item.userId == userId">
+            <router-link class="link" to="/profile">{{
+              item.email
+            }}</router-link>
           </p>
           <p id="po" class="po" v-else>
             <router-link
+              class="link"
+              :to="{ name: 'XProfile', params: { id: item.user_id } }"
+              >{{ item.email }}</router-link
+            >
+          </p> -->
+
+          <p id="po" class="po">
+            <router-link
+              class="link"
               :to="{ name: 'XProfile', params: { id: item.user_id } }"
               >{{ item.email }}</router-link
             >
@@ -110,6 +123,7 @@ export default {
   background-image: url("/src/assets/paper.jpeg");
   background-position: center;
   background-repeat: no-repeat;
+  /* background-repeat: round; */
   background-size: cover;
   position: relative;
   border: 2px solid pink;
@@ -144,19 +158,23 @@ export default {
 }
 .child {
   /* border-color: rgb(34, 240, 240); */
-  border: 3px solid aqua;
-  border-radius: 16px;
+  border: 3px solid rgb(1, 187, 187);
+  border-radius: 12px;
   margin-top: 8px;
-  padding: 4px;
-  background-image: url("/src/assets/designed paper.jpeg");
+  padding: 10px;
+  background-image: url("/src/assets/designed paper1.jpeg");
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
   position: relative;
 }
 img {
+  /* background-image: none; */
+  /* border: 2px solid rgb(92, 91, 91); */
   height: 400px;
   width: 500px;
+  padding: 4px;
+  border-radius: 10px;
 }
 
 .btnss {
@@ -168,6 +186,8 @@ img {
   align-items: flex-start;
   cursor: context-menu;
   font-size: xx-large;
+  font-weight: bolder;
+  color: rgb(0, 0, 17);
 }
 .dot:hover .btnss {
   display: block;
@@ -177,6 +197,7 @@ img {
   /* color: aqua; */
   display: grid;
   place-items: start;
+  padding: 5px;
 }
 .btns {
   border: none;
@@ -193,13 +214,16 @@ img {
   color: red;
   text-decoration: underline;
 }
+.link {
+  text-decoration: none;
+}
 
 /* Reszponsive design */
 @media only screen and (max-width: 550px) {
   .nav {
     display: flex;
-    flex-direction: column-reverse;
-    align-items: flex-end;
+    flex-direction: row-reverse;
+    place-content: center;
     margin: 2px;
   }
   .btnc {
@@ -235,6 +259,13 @@ img {
   }
 }
 @media only screen and (max-width: 350px) {
+  .nav {
+    display: flex;
+    flex-direction: column-reverse;
+    /* flex-shrink: 1; */
+    place-content: center;
+    margin: 2px;
+  }
   img {
     height: 100px;
     width: 100px;
@@ -257,11 +288,18 @@ img {
     font-size: large;
     width: fit-content;
   }
+  .l{
+      display: none;
+  }
   .btnss {
     display: block;
   }
 }
 @media only screen and (max-width: 200px) {
+    .po{
+        font-size: small;
+        font-weight: lighter;
+    }
   img {
     height: 100px;
     width: 100px;
@@ -293,7 +331,7 @@ img {
     color: rgb(4, 112, 112);
     font-size: xx-small;
     /* font-weight: bolder; */
-    text-decoration: underline;
+    /* text-decoration: underline; */
   }
   .btnss {
     display: block;

@@ -2,19 +2,19 @@
   <div class="setting">
     <div class="navu">
       <div class="nav">
-        <router-link to="/setting">Setting</router-link> &nbsp;&nbsp;
-        <router-link to="/about">About</router-link> &nbsp;&nbsp;
-        <router-link to="/profile">Profile</router-link>&nbsp;&nbsp;
-        <router-link to="/home">Home</router-link>
+        <router-link class="link" to="/setting">Setting</router-link> &nbsp;&nbsp;
+        <router-link class="link" to="/about">About</router-link> &nbsp;&nbsp;
+        <router-link class="link" to="/home">Home</router-link>&nbsp;&nbsp;
+        <router-link class="link" to="/profile">Profile</router-link>
       </div>
       <h2>Welcome to setting page</h2>
       <hr />
     </div>
     <div class="navs">
-      <router-link to="/createuser">Create new Accout</router-link><br />
-      <router-link to="/profile">Profile</router-link><br />
+      <router-link class="link" to="/createuser">Create new Accout</router-link><br />
+      <router-link class="link" to="/profile">Profile</router-link><br />
       <a href="https://www.myntra.com/">Shop here</a><br />
-      <a href="" @click="logout">Logout</a>
+      <a class="link" href="" @click="logout">Logout</a>
     </div>
   </div>
 </template>
@@ -23,12 +23,25 @@
 export default {
   name: "Setting",
 
+// data() {
+//     return user: localStorage.getItem('user')
+// },
   methods: {
     logout() {
       localStorage.clear();
 
       this.$router.push("/");
     },
+
+    // async logout() {
+    //     await axios.post("http://localhost/api/logoutUser", {
+    //     headers: {
+    //       Authorization: "Bearer" + " " + localStorage.getItem("token"),
+    //     },
+    //   });
+    //   this.$router.push("/");
+
+    // }
   },
 };
 </script>
@@ -37,6 +50,7 @@ export default {
 .navs {
   display: flex;
   flex-direction: column;
+  height: 200px;
   /* align-items: flex-start; */
   justify-content: center;
 }

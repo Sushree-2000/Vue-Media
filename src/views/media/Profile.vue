@@ -2,21 +2,18 @@
   <div class="home">
     <div class="navu">
       <div class="nav">
-        <router-link to="/setting">Setting</router-link> &nbsp;&nbsp;
-        <router-link to="/about">About</router-link> &nbsp;&nbsp;
-        <router-link to="/home">Home</router-link>&nbsp;&nbsp;
-        <router-link to="/profile"> {{ userName }} </router-link>
+        <router-link class="link" to="/setting">Setting</router-link> &nbsp;&nbsp;
+        <router-link class="link" to="/about">About</router-link> &nbsp;&nbsp;
+        <router-link class="link" to="/home">Home</router-link>&nbsp;&nbsp;
+        <router-link class="link" to="/profile"> {{ userName }} </router-link>
       </div>
       <h2>This is profile page</h2>
       <hr />
     </div>
     <button class="btnc">
-      <router-link to="/createpost">Create Post</router-link>
+      <router-link class="link" to="/createpost">Create Post</router-link>
     </button>
 
-    <div class="navp">
-      <!-- <button></button> -->
-    </div>
     <div class="out">
       <div class="container" v-bind="posts">
         <div class="post" v-for="item in post" :key="item.id">
@@ -27,7 +24,7 @@
                 <button id="lk" class="btns">Like</button>
                 <button id="lk" class="btns">Dislike</button>
                 <button class="btns" v-if="item.user_id == userId">
-                  <router-link
+                  <router-link class="link"
                     :to="{ name: 'EditPost', params: { id: item.id } }"
                   >
                     Edit
@@ -77,7 +74,7 @@
               <p><span>College Passout year: </span>{{ item.passout }}</p>
             </div>
             <div class="btnc">
-              <router-link :to="{ name: 'EditAbout', params: { id: item.id } }"
+              <router-link class="link" :to="{ name: 'EditAbout', params: { id: item.id } }"
                 >Edit</router-link
               >
             </div>
@@ -163,16 +160,17 @@ h3 {
   color: rgb(4, 112, 112);
   font-size: x-large;
   font-weight: bolder;
-  text-decoration: underline;
+  /* text-decoration: underline; */
 }
-/* .out {
-  margin: 2px;
-  display: flex;
-  place-content: space-evenly;
-} */
+
 span {
   color: rgb(2, 175, 175);
   text-decoration: underline;
+}
+.out {
+  margin: 2px;
+  display: flex;
+  place-content: space-evenly;
 }
 .post {
   float: left;
@@ -188,6 +186,9 @@ span {
     flex-direction: column;
     /* place-content: space-evenly; */
     overflow: hidden;
+  }
+  h3{
+      font-size: large;
   }
 }
 </style>

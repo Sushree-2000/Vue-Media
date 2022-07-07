@@ -10,7 +10,6 @@
       <div class="center">
         <div class="containers" id="child">
           <div class="dash">
-            <div class="containers">
               <div class="formgroup">
                 <label for="email">Enter your email</label><br />
                 <input type="email" name="email" v-model="email" />
@@ -24,7 +23,6 @@
 
               <!-- <button class="btnc">Login</button> -->
               <button class="btnr">Login</button>
-            </div>
           </div>
         </div>
       </div>

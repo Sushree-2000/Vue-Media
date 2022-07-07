@@ -2,10 +2,10 @@
   <div class="home">
     <div class="navu">
       <div class="nav">
-        <router-link to="/setting">Setting</router-link> &nbsp;&nbsp;
+        <router-link class="link" to="/setting">Setting</router-link> &nbsp;&nbsp;
         <!-- <router-link to="/about">About</router-link> &nbsp;&nbsp; -->
-        <router-link to="/profile">Profile</router-link>&nbsp;&nbsp;
-        <router-link to="/home">Home</router-link>&nbsp;&nbsp;
+        <router-link class="link" to="/home">Home</router-link>&nbsp;&nbsp;
+        <router-link class="link" to="/profile">{{user}}</router-link>&nbsp;&nbsp;
         <!-- <router-link to="/profile"> {{ userName }} </router-link> -->
       </div>
       <h2>Edit your details</h2>
@@ -152,6 +152,8 @@ export default {
 
     const router = useRouter();
     const route = useRoute();
+    const user = localStorage.getItem("user");
+
 
     const submit = async () => {
       await fetch(`http://localhost/api/updateAbout/${route.params.id}`, {
@@ -188,7 +190,7 @@ export default {
       education,
       college,
       passout,
-      submit,
+      submit,user
     };
   },
 };

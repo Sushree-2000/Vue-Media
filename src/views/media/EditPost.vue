@@ -2,36 +2,39 @@
   <div class="home">
     <div class="navu">
       <div class="nav">
-        <router-link to="/setting">Setting</router-link> &nbsp;&nbsp;
-        <router-link to="/about">About</router-link> &nbsp;&nbsp;
-        <router-link to="/profile">Profile</router-link>&nbsp;&nbsp;
-        <router-link to="/home">Home</router-link>&nbsp;&nbsp;
+        <router-link class="link" to="/setting">Setting</router-link>
+        &nbsp;&nbsp;
+        <router-link class="link" to="/about">About</router-link> &nbsp;&nbsp;
+        <router-link class="link" to="/home">Home</router-link>&nbsp;&nbsp;
+        <router-link class="link" to="/profile">{{user}}</router-link>&nbsp;&nbsp;
         <!-- <router-link to="/profile"> {{ userName }} </router-link> -->
       </div>
-      <h2>Create your posts here</h2>
+      <h2>Edit your post</h2>
       <hr />
     </div>
 
     <form @submit.prevent="submit">
-      <div class="containers">
-        <div class="Post">
-          <label for="textpost">Write your Thoughts</label>
-          <input type="text" name="textpost" v-model="textpost" />
-        </div>
-        <br />
+      <div class="center">
+        <div class="containers" id="child">
+          <div class="formgroup">
+            <label for="textpost">Write your Thoughts</label>
+            <input type="text" name="textpost" v-model="textpost" />
+          </div>
+          <br />
 
-        <div class="Post">
-          <label for="imagepost">Upload your Photos</label>
-          <input
-            type="file"
-            name="imagepost"
-            accept="image/*"
-            @change="handleImageSelected"
-          />
-        </div>
-        <br />
+          <div class="formgroup">
+            <label for="imagepost">Upload your Photos</label>
+            <input
+              type="file"
+              name="imagepost"
+              accept="image/*"
+              @change="handleImageSelected"
+            />
+          </div>
+          <br />
 
-        <button class="btn">Update</button>
+          <button class="btn">Update</button>
+        </div>
       </div>
     </form>
   </div>
@@ -55,6 +58,8 @@ export default {
     const { imageFile, handleImageSelected } = useImageUpload();
     const router = useRouter();
     const route = useRoute();
+    const user = localStorage.getItem("user");
+
 
     const submit = async () => {
       const data = new FormData();
@@ -74,7 +79,7 @@ export default {
       );
       await router.push("/home");
     };
-    return { textpost, submit, handleImageSelected };
+    return { textpost, submit, handleImageSelected, user };
   },
 };
 </script>
